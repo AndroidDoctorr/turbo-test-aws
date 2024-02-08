@@ -1,6 +1,6 @@
 {
-    "dataService": "firestore",
-    "loggingService": "firestore",
+    "dataService": "aws",
+    "loggingService": "aws",
     "controllers": {
         "bookController": "/books"
     }
