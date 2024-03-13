@@ -1,14 +1,11 @@
-const AWS = require('aws-sdk')
 const { buildApp, serviceFactory } = require('turbo-api')
-const { registerService, getAuthService, getDataService } = serviceFactory
-AWS.config.update({ region: 'us-east-2' })
-// const dynamoDB = new AWS.DynamoDB.DocumentClient()
+const { registerService } = serviceFactory
 
 async function startServer() {
     // Register AWS Services
     const DynamoDBService = require('./services/awsDataService')
     const WinstonLogger = require('./services/winstonLoggingService')
-    const { createAuthenticationMiddleware } = require('./authServices/firebaseAuthService')
+    const { createAuthenticationMiddleware } = require('./services/cognitoAuthService')
     registerService('aws', DynamoDBService, WinstonLogger, createAuthenticationMiddleware)
 
     const app = await buildApp()
